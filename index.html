@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIEE UNAL - Representación Estudiantil</title>
+  
+  <!-- Supabase CDN Client JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fontshare Cabinet Grotesk & Google Plus Jakarta Sans -->
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            unalRed: '#BE1B20',
+            cream: '#FDF9F3',
+            canvasBg: '#EAE6DF',
+            black: '#000000',
+            white: '#FFFFFF'
+          },
+          fontFamily: {
+            heading: ['Cabinet Grotesk', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estricto cumplimiento: Cero sombras en toda la aplicación */
+    *, *::before, *::after {
+      box-shadow: none !important;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    .font-heading {
+      font-family: 'Cabinet Grotesk', sans-serif;
+    }
+
+    body {
+      background-color: #EAE6DF;
+      color: #000000;
+    }
+
+    /* Personalización para inputs sin sombra */
+    input, select {
+      outline: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    input:focus, select:focus {
+      border-color: #BE1B20 !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8">
+
+  <!-- Contenedor Principal Completo (Sin sub-contenedores innecesarios) -->
+  <main class="w-full max-w-6xl min-h-[90vh] bg-cream border-2 border-black rounded-3xl p-6 md:p-12 flex flex-col justify-between">
+    
+    <!-- Encabezado de Marca -->
+    <header class="flex flex-wrap items-center justify-between border-b-2 border-black pb-6 gap-4">
+      <div class="flex items-center gap-3">
+        <span class="bg-black text-white font-heading font-black text-xl px-4 py-1 rounded-full uppercase tracking-wider">
+          DIEE UNAL
+        </span>
+        <span class="text-sm md:text-base font-bold uppercase tracking-tight text-black">
+          Representación Estudiantil
+        </span>
+      </div>
+      <div class="text-xs md:text-sm font-semibold tracking-wide border border-black px-3 py-1 rounded-full bg-white">
+        Facultad de Ingeniería — Sede Bogotá
+      </div>
+    </header>
+
+    <!-- Grid de Dos Columnas: Información y Formulario -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 my-8 items-stretch">
+      
+      <!-- Columna Izquierda: Ejes y Candidatos -->
+      <section class="lg:col-span-6 flex flex-col justify-between space-y-8">
+        
+        <!-- Ejes Principales -->
+        <div class="space-y-4">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-unalRed">
+            Propuesta Programática
+          </span>
+          <h1 class="font-heading font-black text-3xl md:text-5xl leading-tight uppercase">
+            Impulsamos una representación estudiantil basada en:
+          </h1>
+          
+          <ul class="space-y-3 pt-2">
+            <li class="flex items-center gap-3 font-heading font-bold text-xl md:text-2xl border-l-4 border-unalRed pl-4">
+              Innovación y alianzas técnicas
+            </li>
+            <li class="flex items-center gap-3 font-heading font-bold text-xl md:text-2xl border-l-4 border-black pl-4">
+              Conexión con ciencia e industria
+            </li>
+          </ul>
+        </div>
+
+        <!-- Candidatos (Formato texto simple, sin cuadros ni fotos) -->
+        <div class="border-t-2 border-black pt-6 space-y-4">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-black block">
+            Candidaturas Oficiales
+          </span>
+          
+          <div class="space-y-4 font-sans">
+            <div>
+              <p class="font-heading font-black text-2xl md:text-3xl tracking-tight text-black">
+                Oscar Moreno <span class="text-unalRed font-normal">|</span> Daniel Pardo
+              </p>
+              <p class="text-base font-bold text-black uppercase tracking-wider">
+                Ingeniería Eléctrica
+              </p>
+            </div>
+
+            <div class="border-t border-black/20 pt-3">
+              <p class="font-heading font-black text-2xl md:text-3xl tracking-tight text-black">
+                Miguel Tovar <span class="text-unalRed font-normal">|</span> Juana Saavedra
+              </p>
+              <p class="text-base font-bold text-black uppercase tracking-wider">
+                Ingeniería Electrónica
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Columna Derecha: Formulario Único -->
+      <section class="lg:col-span-6 bg-white border-2 border-black rounded-3xl p-6 md:p-8 flex flex-col justify-center">
+        
+        <!-- Estado Inicial: Formulario de Registro -->
+        <div id="form-container">
+          <div class="mb-6 space-y-2">
+            <h2 class="font-heading font-black text-2xl md:text-4xl uppercase leading-tight">
+              Recibe las propuestas
+            </h2>
+            <p class="text-sm md:text-base font-medium text-black">
+              Ingresa tus datos de contacto y te enviaremos directamente el Plan de Desarrollo y las propuestas detalladas a tu WhatsApp.
+            </p>
+          </div>
+
+          <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+            
+            <!-- Campo 1: Nombre completo -->
+            <div class="space-y-1">
+              <label for="nombre" class="block text-xs font-extrabold uppercase tracking-wider text-black">
+                Nombre completo
+              </label>
+              <input 
+                type="text" 
+                id="nombre" 
+                name="nombre" 
+                required 
+                placeholder="Ej. María Paula Rodríguez"
+                class="w-full bg-cream border-2 border-black rounded-2xl px-4 py-3 text-base text-black placeholder-black/40 font-medium transition-colors"
+              >
+            </div>
+
+            <!-- Campo 2: Teléfono / WhatsApp -->
+            <div class="space-y-1">
+              <label for="telefono" class="block text-xs font-extrabold uppercase tracking-wider text-black">
+                Teléfono / WhatsApp
+              </label>
+              <input 
+                type="tel" 
+                id="telefono" 
+                name="telefono" 
+                required 
+                placeholder="Ej. 300 123 4567"
+                class="w-full bg-cream border-2 border-black rounded-2xl px-4 py-3 text-base text-black placeholder-black/40 font-medium transition-colors"
+              >
+            </div>
+
+            <!-- Campo 3: Carrera (Selector estricto de 2 opciones) -->
+            <div class="space-y-1">
+              <label for="carrera" class="block text-xs font-extrabold uppercase tracking-wider text-black">
+                Carrera
+              </label>
+              <div class="relative">
+                <select 
+                  id="carrera" 
+                  name="carrera" 
+                  required 
+                  class="w-full bg-cream border-2 border-black rounded-2xl px-4 py-3 text-base text-black font-medium transition-colors cursor-pointer"
+                >
+                  <option value="" disabled selected>Selecciona tu carrera</option>
+                  <option value="Ingeniería Eléctrica">Ingeniería Eléctrica</option>
+                  <option value="Ingeniería Electrónica">Ingeniería Electrónica</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-black font-bold">
+                  &#9660;
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón Píldora Roja (#BE1B20) -->
+            <button 
+              type="submit" 
+              id="submit-btn"
+              class="w-full bg-unalRed text-white font-heading font-extrabold text-lg py-4 px-6 rounded-full hover:bg-black transition-colors duration-200 mt-4 text-center block uppercase tracking-wider"
+            >
+              Recibir Propuestas y Plan de Desarrollo
+            </button>
+            
+          </form>
+        </div>
+
+        <!-- Estado de Confirmación / Éxito -->
+        <div id="success-message" class="hidden text-center space-y-6 py-6">
+          <div class="inline-block bg-unalRed text-white font-heading font-black text-4xl w-16 h-16 rounded-full leading-[4rem] mx-auto">
+            &check;
+          </div>
+          <div class="space-y-2">
+            <h3 class="font-heading font-black text-3xl uppercase">
+              ¡Registro Exitoso!
+            </h3>
+            <p id="success-user-text" class="text-base font-medium text-black">
+              Gracias por registrarte. Te enviaremos toda la información y propuestas en breve.
+            </p>
+          </div>
+          <div class="p-4 bg-cream border-2 border-black rounded-2xl text-xs text-left font-mono space-y-1">
+            <p class="font-bold text-black border-b border-black/20 pb-1 uppercase">Estado del envío:</p>
+            <p id="storage-status-text" class="text-black">Guardado en sistema.</p>
+          </div>
+          <button 
+            onclick="resetForm()" 
+            class="bg-black text-white font-heading font-bold text-sm px-6 py-3 rounded-full hover:bg-unalRed transition-colors uppercase tracking-wider"
+          >
+            Registrar otro estudiante
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Pie de página informativo -->
+    <footer class="border-t-2 border-black pt-4 flex flex-wrap items-center justify-between text-xs font-bold uppercase tracking-wider gap-2">
+      <div>
+        DIEE UNAL &mdash; Departamento de Ingeniería Eléctrica y Electrónica
+      </div>
+      <div class="text-black/60">
+        Universidad Nacional de Colombia
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Script de Conexión Supabase + Lógica del Formulario -->
+  <script>
+    /*
+      ========================================================================
+      INSTRUCCIONES PARA CONECTAR SUPABASE:
+      1. Crea un proyecto en https://supabase.com
+      2. En el editor SQL de Supabase ejecuta la siguiente consulta:
+
+         create table contactos (
+           id bigint generated by default as identity primary key,
+           nombre text,
+           telefono text,
+           carrera text,
+           created_at timestamp default now()
+         );
+
+      3. Reemplaza los valores de SUPABASE_URL y SUPABASE_KEY a continuación.
+      ========================================================================
+    */
+
+    const SUPABASE_URL = 'https://xsycxwihmcmsaoykvgxn.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzeWN4d2lobWNtc2FveWt2Z3huIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1ODM2MTUsImV4cCI6MjEwODE1OTYxNX0.SMi9s7gYTIzILmQJ84EChFTJmXT46ORsJdGtIirLZbY';
+
+    let supabaseClient = null;
+
+    // Inicialización del cliente Supabase
+    try {
+      if (
+        typeof window.supabase !== 'undefined' && 
+        SUPABASE_URL !== 'HTTPS_TU_PROYECTO_SUPABASE_URL' && 
+        SUPABASE_URL.startsWith('https://')
+      ) {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      }
+    } catch (err) {
+      console.warn('Error al inicializar cliente Supabase:', err);
+    }
+
+    // Manejo del envío del formulario
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.innerText = 'PROCESANDO...';
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const carrera = document.getElementById('carrera').value;
+
+      let savedToSupabase = false;
+
+      // Intento de inserción en Supabase mediante async/await
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient
+            .from('contactos')
+            .insert([{ nombre, telefono, carrera }]);
+
+          if (!error) {
+            savedToSupabase = true;
+          } else {
+            console.warn('Error devuelto por Supabase:', error.message);
+          }
+        } catch (err) {
+          console.warn('Excepción al conectar con Supabase:', err);
+        }
+      }
+
+      // Respaldar siempre en LocalStorage para garantizar la captura de datos sin errores de UI
+      const backupData = JSON.parse(localStorage.getItem('diee_contactos') || '[]');
+      backupData.push({
+        nombre,
+        telefono,
+        carrera,
+        fecha: new Date().toISOString(),
+        conectadoSupabase: savedToSupabase
+      });
+      localStorage.setItem('diee_contactos', JSON.stringify(backupData));
+
+      // Mostrar pantalla de confirmación exitosa
+      showSuccessScreen(nombre, savedToSupabase);
+    }
+
+    function showSuccessScreen(nombre, enSupabase) {
+      document.getElementById('form-container').classList.add('hidden');
+      const successDiv = document.getElementById('success-message');
+      successDiv.classList.remove('hidden');
+
+      document.getElementById('success-user-text').innerText = 
+        `Hola ${nombre}, hemos registrado tus datos. Te enviaremos el Plan de Desarrollo y las propuestas a tu número.`;
+
+      const statusText = document.getElementById('storage-status-text');
+      if (enSupabase) {
+        statusText.innerText = 'Sincronizado con Supabase (Tabla: contactos).';
+        statusText.className = 'text-green-700 font-bold';
+      } else {
+        statusText.innerText = 'Guardado localmente en respaldo (LocalStorage listo para exportar). Para conectar a Supabase, configura SUPABASE_URL y SUPABASE_KEY en el código JS.';
+        statusText.className = 'text-black';
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('contact-form').reset();
+      document.getElementById('submit-btn').disabled = false;
+      document.getElementById('submit-btn').innerText = 'Recibir Propuestas y Plan de Desarrollo';
+      document.getElementById('success-message').classList.add('hidden');
+      document.getElementById('form-container').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>s
