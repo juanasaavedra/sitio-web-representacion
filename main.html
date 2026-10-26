@@ -3,32 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIEE UNAL - Representación Estudiantil</title>
+  <title>Candidaturas DIEE UNAL - Representación Estudiantil</title>
   
   <!-- Supabase CDN Client JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Fontshare Cabinet Grotesk & Google Plus Jakarta Sans -->
-  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Anton & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            unalRed: '#BE1B20',
-            cream: '#FDF9F3',
-            canvasBg: '#EAE6DF',
+            unalRed: '#C8102E',
+            unalYellow: '#FFB800',
+            canvasBg: '#F3EFE9',
             black: '#000000',
             white: '#FFFFFF'
           },
           fontFamily: {
-            heading: ['Cabinet Grotesk', 'sans-serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif']
+            anton: ['Anton', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
           }
         }
       }
@@ -36,238 +37,300 @@
   </script>
 
   <style>
-    /* Estricto cumplimiento: Cero sombras en toda la aplicación */
+    /* CERO sombras en toda la página */
     *, *::before, *::after {
       box-shadow: none !important;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    
-    .font-heading {
-      font-family: 'Cabinet Grotesk', sans-serif;
+      text-shadow: none !important;
     }
 
     body {
-      background-color: #EAE6DF;
-      color: #000000;
+      background-color: #F3EFE9;
+      scroll-behavior: smooth;
     }
-
-    /* Personalización para inputs sin sombra */
-    input, select {
-      outline: none;
+    
+    /* Reset extra para select sin sombras nativas */
+    select {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
     }
-
-    input:focus, select:focus {
-      border-color: #BE1B20 !important;
-    }
   </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 md:p-8">
+<body class="font-sans text-black selection:bg-unalYellow selection:text-black">
 
-  <!-- Contenedor Principal Completo (Sin sub-contenedores innecesarios) -->
-  <main class="w-full max-w-6xl min-h-[90vh] bg-cream border-2 border-black rounded-3xl p-6 md:p-12 flex flex-col justify-between">
-    
-    <!-- Encabezado de Marca -->
-    <header class="flex flex-wrap items-center justify-between border-b-2 border-black pb-6 gap-4">
-      <div class="flex items-center gap-3">
-        <span class="bg-black text-white font-heading font-black text-xl px-4 py-1 rounded-full uppercase tracking-wider">
-          DIEE UNAL
-        </span>
-        <span class="text-sm md:text-base font-bold uppercase tracking-tight text-black">
-          Representación Estudiantil
-        </span>
+  <!-- Header / Hero Section -->
+  <header class="bg-unalRed text-white pt-16 pb-12 px-6 border-b-4 border-black">
+    <div class="max-w-5xl mx-auto text-center space-y-6">
+      <h2 class="font-sans font-extrabold text-lg md:text-xl tracking-widest uppercase text-unalYellow">
+        Representación Estudiantil DIEE
+      </h2>
+      <h1 class="font-anton text-5xl md:text-6xl lg:text-7xl uppercase leading-tight">
+        Por un DIEE con mejor infraestructura, más innovación y mayor cercanía a la industria
+      </h1>
+      <div class="pt-6 flex flex-wrap justify-center gap-4">
+        <a href="#propuestas" class="inline-block bg-unalYellow text-black font-anton text-2xl px-8 py-4 rounded-full border-4 border-black hover:bg-white transition-colors uppercase tracking-wide">
+          Conoce nuestras propuestas
+        </a>
+        <a href="#formulario" class="inline-block bg-white text-black font-anton text-2xl px-8 py-4 rounded-full border-4 border-black hover:bg-unalYellow transition-colors uppercase tracking-wide">
+          Apóyanos aquí
+        </a>
       </div>
-      <div class="text-xs md:text-sm font-semibold tracking-wide border border-black px-3 py-1 rounded-full bg-white">
-        Facultad de Ingeniería — Sede Bogotá
-      </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- Grid de Dos Columnas: Información y Formulario -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 my-8 items-stretch">
-      
-      <!-- Columna Izquierda: Ejes y Candidatos -->
-      <section class="lg:col-span-6 flex flex-col justify-between space-y-8">
-        
-        <!-- Ejes Principales -->
-        <div class="space-y-4">
-          <span class="text-xs font-extrabold uppercase tracking-widest text-unalRed">
-            Propuesta Programática
-          </span>
-          <h1 class="font-heading font-black text-3xl md:text-5xl leading-tight uppercase">
-            Impulsamos una representación estudiantil basada en:
-          </h1>
-          
-          <ul class="space-y-3 pt-2">
-            <li class="flex items-center gap-3 font-heading font-bold text-xl md:text-2xl border-l-4 border-unalRed pl-4">
-              Innovación y alianzas técnicas
-            </li>
-            <li class="flex items-center gap-3 font-heading font-bold text-xl md:text-2xl border-l-4 border-black pl-4">
-              Conexión con ciencia e industria
-            </li>
-          </ul>
-        </div>
-
-        </div>
-        <!-- BOTON DE INSTAGRAM  -->
-        <div class="pt-6">
-          <a href="https://www.instagram.com/repres.diee/" target="_blank" class="block w-full bg-unalRed text-white font-heading font-extrabold text-lg py-4 px-6 rounded-full hover:bg-black transition-colors duration-200 text-center uppercase tracking-wider">
-            Síguenos en Instagram
-          </a>
-        </div>
-    
-        <!-- Candidatos (Formato texto simple, sin cuadros ni fotos) -->
-        <div class="border-t-2 border-black pt-6 space-y-4">
-          <span class="text-xs font-extrabold uppercase tracking-widest text-black block">
-            Candidaturas Oficiales
-          </span>
-          
-          <div class="space-y-4 font-sans">
-            <div>
-              <p class="font-heading font-black text-2xl md:text-3xl tracking-tight text-black">
-                Oscar Moreno <span class="text-unalRed font-normal">|</span> Daniel Pardo
-              </p>
-              <p class="text-base font-bold text-black uppercase tracking-wider">
-                Ingeniería Eléctrica
-              </p>
-            </div>
-
-            <div class="border-t border-black/20 pt-3">
-              <p class="font-heading font-black text-2xl md:text-3xl tracking-tight text-black">
-                Miguel Tovar <span class="text-unalRed font-normal">|</span> Juana Saavedra
-              </p>
-              <p class="text-base font-bold text-black uppercase tracking-wider">
-                Ingeniería Electrónica
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- Columna Derecha: Formulario Único -->
-      <section class="lg:col-span-6 bg-white border-2 border-black rounded-3xl p-6 md:p-8 flex flex-col justify-center">
-        
-        <!-- Estado Inicial: Formulario de Registro -->
-        <div id="form-container">
-          <div class="mb-6 space-y-2">
-            <h2 class="font-heading font-black text-2xl md:text-4xl uppercase leading-tight">
-              Recibe las propuestas
-            </h2>
-            <p class="text-sm md:text-base font-medium text-black">
-              Ingresa tus datos de contacto y te enviaremos directamente el Plan de Desarrollo y las propuestas detalladas a tu WhatsApp.
-            </p>
-          </div>
-
-          <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
-            
-            <!-- Campo 1: Nombre completo -->
-            <div class="space-y-1">
-              <label for="nombre" class="block text-xs font-extrabold uppercase tracking-wider text-black">
-                Nombre completo
-              </label>
-              <input 
-                type="text" 
-                id="nombre" 
-                name="nombre" 
-                required 
-                placeholder="Ej. María Paula Rodríguez"
-                class="w-full bg-cream border-2 border-black rounded-2xl px-4 py-3 text-base text-black placeholder-black/40 font-medium transition-colors"
-              >
-            </div>
-
-            <!-- Campo 2: Teléfono / WhatsApp -->
-            <div class="space-y-1">
-              <label for="telefono" class="block text-xs font-extrabold uppercase tracking-wider text-black">
-                Teléfono / WhatsApp
-              </label>
-              <input 
-                type="tel" 
-                id="telefono" 
-                name="telefono" 
-                required 
-                placeholder="Ej. 300 123 4567"
-                class="w-full bg-cream border-2 border-black rounded-2xl px-4 py-3 text-base text-black placeholder-black/40 font-medium transition-colors"
-              >
-            </div>
-
-            <!-- Campo 3: Carrera (Selector estricto de 2 opciones) -->
-            <div class="space-y-1">
-              <label for="carrera" class="block text-xs font-extrabold uppercase tracking-wider text-black">
-                Carrera
-              </label>
-              <div class="relative">
-                <select 
-                  id="carrera" 
-                  name="carrera" 
-                  required 
-                  class="w-full bg-cream border-2 border-black rounded-2xl px-4 py-3 text-base text-black font-medium transition-colors cursor-pointer"
-                >
-                  <option value="" disabled selected>Selecciona tu carrera</option>
-                  <option value="Ingeniería Eléctrica">Ingeniería Eléctrica</option>
-                  <option value="Ingeniería Electrónica">Ingeniería Electrónica</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-black font-bold">
-                  &#9660;
-                </div>
-              </div>
-            </div>
-
-            <!-- Botón Píldora Roja (#BE1B20) -->
-            <button 
-              type="submit" 
-              id="submit-btn"
-              class="w-full bg-unalRed text-white font-heading font-extrabold text-lg py-4 px-6 rounded-full hover:bg-black transition-colors duration-200 mt-4 text-center block uppercase tracking-wider"
-            >
-              Recibir Propuestas y Plan de Desarrollo
-            </button>
-            
-          </form>
-        </div>
-
-        <!-- Estado de Confirmación / Éxito -->
-        <div id="success-message" class="hidden text-center space-y-6 py-6">
-          <div class="inline-block bg-unalRed text-white font-heading font-black text-4xl w-16 h-16 rounded-full leading-[4rem] mx-auto">
-            &check;
-          </div>
-          <div class="space-y-2">
-            <h3 class="font-heading font-black text-3xl uppercase">
-              ¡Registro Exitoso!
-            </h3>
-            <p id="success-user-text" class="text-base font-medium text-black">
-              Gracias por registrarte. Te enviaremos toda la información y propuestas en breve.
-            </p>
-          </div>
-          <div class="p-4 bg-cream border-2 border-black rounded-2xl text-xs text-left font-mono space-y-1">
-            <p class="font-bold text-black border-b border-black/20 pb-1 uppercase">Estado del envío:</p>
-            <p id="storage-status-text" class="text-black">Guardado en sistema.</p>
-          </div>
-          <button 
-            onclick="resetForm()" 
-            class="bg-black text-white font-heading font-bold text-sm px-6 py-3 rounded-full hover:bg-unalRed transition-colors uppercase tracking-wider"
-          >
-            Registrar otro estudiante
-          </button>
-        </div>
-
-      </section>
-
+  <!-- Candidatos Section -->
+  <section class="py-20 px-6 max-w-6xl mx-auto border-b-4 border-black">
+    <div class="text-center mb-16">
+      <h2 class="font-anton text-5xl md:text-6xl uppercase text-black mb-2 bg-unalYellow inline-block px-6 py-2 border-4 border-black rotate-1">
+        Vota por:
+      </h2>
+      <p class="text-xl font-extrabold text-unalRed uppercase tracking-widest mt-6">
+        Ing. Eléctrica y Electrónica
+      </p>
     </div>
 
-    <!-- Pie de página informativo -->
-    <footer class="border-t-2 border-black pt-4 flex flex-wrap items-center justify-between text-xs font-bold uppercase tracking-wider gap-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-10">
+      <!-- Tarjeta Ing. Eléctrica -->
+      <div class="bg-white p-8 rounded-2xl border-4 border-black flex flex-col items-center text-center relative mt-10">
+        
+        <!-- Estrella de 12 picos (#1) -->
+        <div class="absolute -top-16 left-1/2 transform -translate-x-1/2 w-40 h-40 flex items-center justify-center">
+          <svg class="absolute inset-0 w-full h-full text-unalYellow" viewBox="0 0 120 120">
+            <path fill="currentColor" stroke="#000000" stroke-width="1.5" stroke-linejoin="round" d="M60,2 L68,20 L87,11 L87,31 L108,31 L97,47 L114,60 L97,73 L108,89 L87,89 L87,109 L68,100 L60,118 L52,100 L33,109 L33,89 L12,89 L23,73 L6,60 L23,47 L12,31 L33,31 L33,11 L52,20 Z" />
+          </svg>
+          <span class="relative font-anton text-6xl text-black">#1</span>
+        </div>
+
+        <h3 class="font-anton text-4xl uppercase mt-16 mb-2">Daniel Pardo <br> <span class="text-unalRed text-2xl">y</span> <br> Oscar Moreno</h3>
+        <div class="w-full h-1 bg-black my-4"></div>
+        <span class="font-extrabold text-lg uppercase tracking-wider text-black">
+          Ing. Eléctrica
+        </span>
+      </div>
+
+      <!-- Tarjeta Ing. Electrónica -->
+      <div class="bg-white p-8 rounded-2xl border-4 border-black flex flex-col items-center text-center relative mt-10">
+        
+        <!-- Estrella de 12 picos (#4) -->
+        <div class="absolute -top-16 left-1/2 transform -translate-x-1/2 w-40 h-40 flex items-center justify-center">
+          <svg class="absolute inset-0 w-full h-full text-unalYellow" viewBox="0 0 120 120">
+            <path fill="currentColor" stroke="#000000" stroke-width="1.5" stroke-linejoin="round" d="M60,2 L68,20 L87,11 L87,31 L108,31 L97,47 L114,60 L97,73 L108,89 L87,89 L87,109 L68,100 L60,118 L52,100 L33,109 L33,89 L12,89 L23,73 L6,60 L23,47 L12,31 L33,31 L33,11 L52,20 Z" />
+          </svg>
+          <span class="relative font-anton text-6xl text-black">#4</span>
+        </div>
+
+        <h3 class="font-anton text-4xl uppercase mt-16 mb-2">Juana Saavedra <br> <span class="text-unalRed text-2xl">y</span> <br> Miguel Tovar</h3>
+        <div class="w-full h-1 bg-black my-4"></div>
+        <span class="font-extrabold text-lg uppercase tracking-wider text-black">
+          Ing. Electrónica
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Propuestas Section -->
+  <section id="propuestas" class="py-16 px-6 max-w-7xl mx-auto border-b-4 border-black">
+    <div class="text-center mb-12 space-y-4">
+      <h2 class="font-anton text-5xl md:text-7xl uppercase text-unalRed">¿Qué proponemos?</h2>
+      <p class="max-w-3xl mx-auto text-xl font-bold text-black border-4 border-black bg-white p-6 -rotate-1">
+        Nuestras propuestas se centran en dos ejes principales: acercar la academia al ejercicio de la ingeniería y realizar ajustes menores en la formación académica para hacer más fluido el avance por la carrera.
+      </p>
+    </div>
+
+    <div class="space-y-16">
+      <!-- EJE 1 -->
       <div>
-        DIEE UNAL &mdash; Departamento de Ingeniería Eléctrica y Electrónica
+        <h3 class="font-anton text-4xl uppercase bg-black text-white inline-block px-6 py-3 mb-8 border-4 border-unalYellow">
+          Eje 1: Acercar la academia a la industria
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white p-8 border-4 border-black">
+            <h4 class="font-anton text-3xl text-unalRed uppercase mb-4 flex items-center gap-3">
+              <svg class="w-8 h-8 text-unalYellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="black" stroke-width="1.5"/></svg>
+              Salidas de campo
+            </h4>
+            <ul class="space-y-3 font-semibold text-lg text-black">
+              <li>• Proponemos aumentar las salidas para pretender que todo estudiante tenga al menos 2 salidas de campo en toda su carrera.</li>
+              <li>• Buscaremos activamente empresas dispuestas a aceptar visitas de campo.</li>
+              <li>• Gestionaremos un acuerdo marco para ofrecer facilidades a las empresas que apoyen la idea y recursos financieros para los desplazamientos.</li>
+            </ul>
+          </div>
+          <div class="bg-white p-8 border-4 border-black">
+            <h4 class="font-anton text-3xl text-unalRed uppercase mb-4 flex items-center gap-3">
+              <svg class="w-8 h-8 text-unalYellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="black" stroke-width="1.5"/></svg>
+              Congresos de ingeniería
+            </h4>
+            <ul class="space-y-3 font-semibold text-lg text-black">
+              <li>• Promover la ejecución de un congreso anual de ingeniería eléctrica y electrónica con ponentes de todo el mundo.</li>
+              <li>• Hacer de la universidad un centro de discusión sobre avances de ingeniería aplicada.</li>
+              <li>• Charlas y eventos abiertos al público para lograr la difusión nacional desde la UNAL.</li>
+            </ul>
+          </div>
+          <div class="bg-white p-8 border-4 border-black">
+            <h4 class="font-anton text-3xl text-unalRed uppercase mb-4 flex items-center gap-3">
+              <svg class="w-8 h-8 text-unalYellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="black" stroke-width="1.5"/></svg>
+              Donaciones de empresas
+            </h4>
+            <ul class="space-y-3 font-semibold text-lg text-black">
+              <li>• Opción de entregar donaciones materiales ofreciendo reconocimiento y reducción tributaria a las empresas.</li>
+              <li>• Eliminará sobrecostos de compra de la universidad y renovará equipos con impacto financiero nulo.</li>
+              <li>• Familiarizará a los próximos ingenieros con equipos y materiales actualizados.</li>
+            </ul>
+          </div>
+          <div class="bg-white p-8 border-4 border-black">
+            <h4 class="font-anton text-3xl text-unalRed uppercase mb-4 flex items-center gap-3">
+              <svg class="w-8 h-8 text-unalYellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="black" stroke-width="1.5"/></svg>
+              Vínculo con el SENA
+            </h4>
+            <ul class="space-y-3 font-semibold text-lg text-black">
+              <li>• Acuerdo marco SENA-UNAL para acceder a cursos prácticos de alta demanda, aprovechando sus instructores e instalaciones.</li>
+              <li>• <strong>Ing. Eléctrica:</strong> Programación de PLC, instalación y control de motores, VDF, tableros de control.</li>
+              <li>• <strong>Ing. Electrónica:</strong> Soldadura SMD, reparación de tarjetas, fibra óptica, electrónica de potencia.</li>
+            </ul>
+          </div>
+          <div class="bg-white p-8 border-4 border-black md:col-span-2">
+            <h4 class="font-anton text-3xl text-unalRed uppercase mb-4 flex items-center gap-3">
+              <svg class="w-8 h-8 text-unalYellow" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="black" stroke-width="1.5"/></svg>
+              Cursos de software
+            </h4>
+            <ul class="space-y-3 font-semibold text-lg text-black">
+              <li>• Crear un banco de cursos virtuales de software de ingeniería certificados.</li>
+              <li>• Facilitar a los estudiantes dominarlos con demostrabilidad institucional.</li>
+              <li>• Con esto, los egresados dominan herramientas del día a día, aumentando empleabilidad y esperanza salarial.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="text-black/60">
-        Universidad Nacional de Colombia
+
+      <!-- EJE 2 -->
+      <div>
+        <h3 class="font-anton text-4xl uppercase bg-black text-white inline-block px-6 py-3 mb-8 border-4 border-unalRed mt-8">
+          Eje 2: Ajustes en formación académica
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-unalYellow p-8 border-4 border-black">
+            <h4 class="font-anton text-2xl text-black uppercase mb-4 flex items-center gap-2">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="black" stroke-width="1.5"/></svg>
+              Reducción de bloqueos por malla
+            </h4>
+            <p class="font-bold text-black text-lg">
+              Promoveremos la modificación de prerrequisitos que limitan el avance injustificadamente. Especialmente en primeros semestres donde asignaturas (ej. cálculo diferencial) obstruyen el avance de forma innecesaria.
+            </p>
+          </div>
+          <div class="bg-unalYellow p-8 border-4 border-black">
+            <h4 class="font-anton text-2xl text-black uppercase mb-4 flex items-center gap-2">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="black" stroke-width="1.5"/></svg>
+              Mejora en preparación de clases
+            </h4>
+            <p class="font-bold text-black text-lg">
+              Apostaremos por una plataforma virtual donde profesores detallen qué se aprenderá, conocimientos previos y enfoque personal. Los estudiantes entrarán motivados y preparados, disminuyendo la iteración de temas y abriendo espacio a dinámicas pedagógicas.
+            </p>
+          </div>
+          <div class="bg-unalYellow p-8 border-4 border-black">
+            <h4 class="font-anton text-2xl text-black uppercase mb-4 flex items-center gap-2">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="black" stroke-width="1.5"/></svg>
+              Ajuste en múltiples asignaturas
+            </h4>
+            <p class="font-bold text-black text-lg">
+              Impulsaremos el debate de contenidos para enfocarlos en aplicaciones cercanas a la ingeniería y evitar redundancia. Específicamente en asignaturas como: Mecánica para ingenieros, Fundamentos de materiales y Variable compleja.
+            </p>
+          </div>
+          <div class="bg-unalYellow p-8 border-4 border-black">
+            <h4 class="font-anton text-2xl text-black uppercase mb-4 flex items-center gap-2">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="black" stroke-width="1.5"/></svg>
+              Base de datos de conocimientos
+            </h4>
+            <p class="font-bold text-black text-lg">
+              Creación de una base de datos donde se tengan centralizados los conocimientos previos necesarios para cursar de manera exitosa cada una de las materias del departamento, definidos directamente por los profesores del DIEE.
+            </p>
+          </div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-  </main>
+  <!-- SECCIÓN FORMULARIO SUPABASE -->
+  <section id="formulario" class="py-20 px-6 max-w-4xl mx-auto">
+    
+    <div id="form-container">
+      <div class="text-center mb-10">
+        <h2 class="font-anton text-5xl uppercase text-unalRed mb-4">Apóyanos Aquí</h2>
+        <p class="font-bold text-xl text-black">
+          Ingresa tus datos de contacto y te enviaremos directamente el Plan de Desarrollo y las propuestas detalladas a tu WhatsApp.
+        </p>
+      </div>
 
-  <!-- Script de Conexión Supabase + Lógica del Formulario -->
+      <form id="contact-form" onsubmit="handleFormSubmit(event)" class="bg-white p-8 md:p-12 border-4 border-black flex flex-col gap-6">
+        
+        <!-- Nombre -->
+        <div class="flex flex-col gap-2">
+          <label for="nombre" class="font-anton text-2xl uppercase">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej. María Paula Rodríguez" class="p-4 border-4 border-black font-semibold text-lg focus:outline-none focus:bg-canvasBg">
+        </div>
+        
+        <!-- Teléfono -->
+        <div class="flex flex-col gap-2">
+          <label for="telefono" class="font-anton text-2xl uppercase">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 300 123 4567" class="p-4 border-4 border-black font-semibold text-lg focus:outline-none focus:bg-canvasBg">
+        </div>
+        
+        <!-- Carrera -->
+        <div class="flex flex-col gap-2">
+          <label for="carrera" class="font-anton text-2xl uppercase">Carrera</label>
+          <div class="relative">
+            <select id="carrera" name="carrera" required class="w-full p-4 border-4 border-black font-semibold text-lg focus:outline-none focus:bg-canvasBg bg-white cursor-pointer">
+              <option value="" disabled selected>Selecciona tu carrera</option>
+              <option value="Ingeniería Eléctrica">Ingeniería Eléctrica</option>
+              <option value="Ingeniería Electrónica">Ingeniería Electrónica</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-black font-bold">
+              &#9660;
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="submit-btn" class="bg-black text-white font-anton text-3xl py-4 mt-4 border-4 border-black hover:bg-unalRed transition-colors uppercase tracking-wide">
+          Recibir Propuestas y Plan de Desarrollo
+        </button>
+      </form>
+    </div>
+
+    <!-- Estado de Confirmación / Éxito -->
+    <div id="success-message" class="hidden bg-white p-12 border-4 border-black text-center space-y-6">
+      <div class="inline-block bg-unalYellow text-black border-4 border-black font-anton text-6xl w-24 h-24 rounded-full flex items-center justify-center mx-auto">
+        ✓
+      </div>
+      <div class="space-y-4">
+        <h3 class="font-anton text-4xl uppercase text-unalRed">
+          ¡Registro Exitoso!
+        </h3>
+        <p id="success-user-text" class="text-xl font-bold text-black">
+          Gracias por registrarte. Te enviaremos toda la información y propuestas en breve.
+        </p>
+      </div>
+      <div class="p-4 bg-canvasBg border-4 border-black text-left font-mono space-y-1">
+        <p class="font-bold text-black border-b-2 border-black pb-1 uppercase">Estado del envío:</p>
+        <p id="storage-status-text" class="text-black font-bold">Guardado en sistema.</p>
+      </div>
+      <button onclick="resetForm()" class="bg-black text-white font-anton text-2xl px-8 py-4 border-4 border-black hover:bg-unalRed transition-colors uppercase tracking-wide w-full mt-6">
+        Registrar otro estudiante
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white py-10 border-t-4 border-black">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
+      <div class="font-anton text-4xl text-black uppercase">
+        DIEE UNAL
+      </div>
+      <p class="text-lg font-extrabold text-unalRed uppercase tracking-widest">
+        Representación Estudiantil - Facultad de Ingeniería
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT DE SUPABASE QUE PROPORCIONASTE -->
   <script>
     /*
       ========================================================================
@@ -378,4 +441,4 @@
     }
   </script>
 </body>
-</html>s
+</html>
