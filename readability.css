@@ -1,0 +1,40 @@
+/* Slightly larger supporting text for easier reading. */
+.brand small{font-size:11px}
+.main-nav{font-size:13px}
+.eyebrow{font-size:11px}
+.button{font-size:12px}
+.hero-bottom{font-size:10px}
+.section-kicker{font-size:10px}
+.text-link{font-size:12px}
+.axis-number{font-size:10px}
+.axis-card p{font-size:13px}
+.axis-card a{font-size:11px}
+.person-meta>span{font-size:9px}
+.person-line{font-size:10px}
+.proposal-top{font-size:9px}
+.proposal-card>p{font-size:12px}
+.proposal-card details{font-size:11px}
+.card-foot{font-size:9px}
+.filter-button{font-size:11px}
+.site-footer>span{font-size:10px}
+.form-heading{font-size:9px}
+.signup-form>label:not(.consent-row){font-size:11px}
+.signup-form input:not([type=checkbox]),.signup-form select{font-size:13px}
+.consent-row{font-size:10px}
+.form-status{font-size:11px}
+.form-privacy{font-size:9px}
+.raffle-note small{font-size:11px}
+.pair-heading,.pair-heading b{font-size:9px}
+@media(max-width:620px){
+  .hero-bottom{font-size:8px}
+  .hero-actions .button{font-size:10px}
+  .section-heading>p{font-size:13px}
+  .person-meta>span{font-size:8px}
+  .person-line{font-size:9px}
+  .filter-button{font-size:10px}
+  .filter-button span{font-size:12px}
+  .site-footer>span{font-size:9px}
+  .footer-brand small{font-size:9px}
+  .proposal-card>p{font-size:13px}
+  .pair-heading,.pair-heading b{font-size:8px}
+}

@@ -1,0 +1,55 @@
+.signup-section{background:var(--paper);padding:92px 0 100px;position:relative;overflow:hidden}
+.signup-section:after{content:"";position:absolute;right:-130px;top:-160px;width:420px;height:420px;border:1px solid rgba(190,27,32,.17);border-radius:50%;box-shadow:0 0 0 38px rgba(190,27,32,.035),0 0 0 78px rgba(190,27,32,.025);pointer-events:none}
+.signup-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:10%;align-items:center;position:relative;z-index:1}
+.signup-copy h2{font:800 clamp(47px,5.6vw,70px)/.91 var(--display);text-transform:uppercase;letter-spacing:-.03em;margin:32px 0 20px}
+.signup-copy h2 em{color:var(--red);font-style:normal}
+.signup-copy>p:not(.section-kicker){max-width:420px;font-size:13px;line-height:1.8;color:#595249;margin:0}
+.raffle-note{display:flex;align-items:center;gap:14px;margin-top:29px;padding-top:20px;border-top:1px solid rgba(30,30,30,.18);max-width:420px}
+.raffle-star{display:grid;place-items:center;flex:0 0 47px;height:47px;background:var(--yellow);color:var(--ink);font-size:24px;clip-path:polygon(50% 0,61% 13%,78% 5%,80% 23%,98% 31%,87% 47%,100% 61%,81% 68%,83% 87%,63% 82%,50% 100%,39% 84%,20% 95%,18% 75%,0 68%,12% 52%,0 38%,19% 29%,18% 11%,38% 17%)}
+.raffle-note b{display:block;font:700 21px var(--display);text-transform:uppercase}
+.raffle-note small{display:block;font-size:10px;line-height:1.6;color:#686158;margin-top:3px}
+.signup-form{background:white;padding:29px 31px 24px;box-shadow:8px 8px var(--red);border:1px solid rgba(30,30,30,.1)}
+.form-heading{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:19px;color:#837a71;font-size:8px;font-weight:800;letter-spacing:.1em}
+.form-heading span:last-child{color:var(--red)}
+.signup-form>label:not(.consent-row){display:block;font-size:10px;font-weight:700;margin:15px 0 7px}
+.signup-form input:not([type=checkbox]),.signup-form select{width:100%;height:43px;background:#fbfaf8;border:1px solid rgba(30,30,30,.17);border-radius:0;padding:0 12px;color:var(--ink);font:12px var(--body);outline:none}
+.signup-form input:focus,.signup-form select:focus{border-color:var(--red);box-shadow:0 0 0 2px rgba(190,27,32,.12)}
+.signup-form input::placeholder{color:#a7a098}
+.consent-row{display:flex;align-items:flex-start;gap:10px;margin:18px 0 2px;font-size:9px;line-height:1.6;color:#625c55;cursor:pointer}
+.consent-row input{flex:0 0 15px;width:15px;height:15px;margin:0;accent-color:var(--red)}
+.honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.form-submit{width:100%;justify-content:space-between;border:0;margin-top:15px;cursor:pointer}
+.form-submit:disabled{opacity:.65;cursor:wait;transform:none;box-shadow:none}
+.form-status{min-height:0;margin:10px 0 0;font-size:10px;line-height:1.6}
+.form-status:empty{display:none}
+.form-status[data-state=success]{padding:10px;background:#edf5e8;color:#285b23}
+.form-status[data-state=error]{padding:10px;background:#fff0ed;color:#9a231c}
+.form-privacy{font-size:8px;color:#898178;margin:12px 0 0;line-height:1.5}
+@media(max-width:800px){.signup-grid{gap:6%}.signup-form{padding:25px 23px 20px}}
+@media(max-width:620px){.signup-section{padding:72px 0 80px}.signup-grid{grid-template-columns:1fr;gap:32px}.signup-copy h2{font-size:52px;margin:25px 0 16px}.signup-copy>p:not(.section-kicker){font-size:12px}.raffle-note{margin-top:22px}.signup-form{padding:23px 18px 19px;box-shadow:5px 5px var(--red)}}
+.signup-feature{min-height:calc(100svh - 78px);padding:30px 0 36px;display:flex;align-items:center;background:var(--paper)}
+.signup-feature:after{right:-165px;top:auto;bottom:-235px;border-color:rgba(190,27,32,.2)}
+.signup-feature .signup-grid{width:min(1240px,90%);grid-template-columns:1.03fr .97fr;gap:8%;align-items:center}
+.signup-feature .signup-form{padding:23px 27px 19px;box-shadow:7px 7px var(--red)}
+.signup-feature .signup-form{background:white}
+.signup-form-title{font:800 clamp(32px,3.5vw,43px)/.9 var(--display);text-transform:uppercase;letter-spacing:-.025em;margin:18px 0 19px;color:var(--ink)}
+.signup-feature .signup-form>label:not(.consent-row){margin:12px 0 6px}
+.signup-feature .signup-form input:not([type=checkbox]),.signup-feature .signup-form select{height:39px}
+.signup-feature .consent-row{margin:14px 0 2px}
+.signup-feature .form-submit{margin-top:12px;padding-top:13px;padding-bottom:13px}
+.signup-feature .form-privacy{margin-top:8px}
+.signup-feature .signup-copy h2{font-size:clamp(48px,5.2vw,66px);margin:25px 0 16px}
+.signup-feature .signup-copy>p:not(.section-kicker){max-width:410px}
+.sticker-row{display:flex;gap:18px;align-items:center;margin-top:24px;padding:8px 3px 2px}
+.prize-sticker{width:142px;min-height:133px;margin:0;padding:9px 9px 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:white;border:3px solid var(--ink);box-shadow:4px 5px var(--yellow);transform:rotate(-4deg);text-align:center}
+.prize-sticker svg{width:86px;height:73px;overflow:visible}
+.prize-sticker figcaption{font:700 15px/1 var(--display);text-transform:uppercase}
+.sticker-kit{transform:rotate(4deg);box-shadow:4px 5px var(--red)}
+.signup-feature .raffle-note{margin-top:19px;padding-top:15px}
+.signup-feature .raffle-note b{font-size:18px}
+.signup-feature .raffle-star{flex-basis:39px;height:39px;font-size:20px}
+.hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hero-actions .button{padding:15px 17px}
+@media(max-width:800px){.signup-feature{min-height:calc(100svh - 70px)}.signup-feature .signup-grid{width:88%;gap:5%}.signup-feature .signup-form{padding:21px 21px 17px}.signup-form-title{font-size:36px}.signup-feature .signup-copy h2{font-size:52px}.prize-sticker{width:128px;min-height:122px}.prize-sticker svg{width:75px;height:64px}}
+@media(max-width:620px){.signup-feature{min-height:calc(100svh - 66px);padding:22px 0 32px;align-items:start}.signup-feature .signup-grid{width:88%;grid-template-columns:1fr;gap:29px}.signup-feature .signup-form{order:0;padding:20px 18px 17px;box-shadow:5px 5px var(--red)}.signup-form-title{font-size:35px;margin:14px 0 15px}.signup-feature .signup-form>label:not(.consent-row){margin:10px 0 5px}.signup-feature .signup-form input:not([type=checkbox]),.signup-feature .signup-form select{height:38px}.signup-feature .signup-copy{order:1}.signup-feature .signup-copy h2{font-size:48px;margin:21px 0 13px}.signup-feature .signup-copy>p:not(.section-kicker){font-size:12px}.sticker-row{margin-top:17px;gap:14px}.prize-sticker{width:124px;min-height:117px}.prize-sticker svg{width:70px;height:59px}.signup-feature .raffle-note{margin-top:17px}.signup-feature .form-privacy{font-size:8px}}
+@media(max-width:620px){.hero-actions{gap:8px}.hero-actions .button{padding:14px 12px;font-size:9px;gap:12px}}
